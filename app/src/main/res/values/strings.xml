@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Lista de Tarefas</string>
+    <string name="pending_tasks_title">Minhas Tarefas</string>
+    <string name="add_task_button_description">add task</string>
+    <string name="buttonAdicionarTarefa">Adicionar</string>
+    <string name="newTaskText">Tarefa</string>
+    <string name="newTaskTitle">Adicionar Tarefa:</string>
+    <string name="error">Erro!</string>
+    <string name="not_empty_task">O campo tarefa não pode estar vazio</string>
+    <string name="btn_edit_item">Editar</string>
+    <string name="btn_delete_Item">Remover</string>
+    <string name="edit_task_title">Editar Tarefa:</string>
+    <string name="btn_edit_Item">Salvar</string>
+    <string name="new_task_text">Remover</string>
+</resources>
