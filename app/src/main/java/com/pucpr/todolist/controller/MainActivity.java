@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onRemoveItemClick(View view, int position) {
                 DataModel.getInstance().tasks.remove(position);
-                taskAdapter.notifyDataSetChanged();
+                taskAdapter.notifyItemRemoved(position);
 
                 return false;
             }
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                         String newTaskName = data.getStringExtra("newTaskName");
                         Log.d("newTaskName", newTaskName);
 
-                        DataModel.getInstance().tasks.add(new Task(newTaskName, UUID.randomUUID(), false));
+                        DataModel.getInstance().tasks.add(new Task(newTaskName, UUID.randomUUID().clockSequence(), 0));
                     }
                 }
             }

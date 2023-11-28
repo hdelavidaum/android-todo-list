@@ -78,7 +78,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder>{
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Task t = DataModel.getInstance().tasks.get(position);
         holder.textViewItem.setText(t.getName());
-        holder.checkBoxItem.setChecked(t.isCompleted());
+        holder.checkBoxItem.setChecked(t.isCompleted() > 0);
     }
 
     @Override

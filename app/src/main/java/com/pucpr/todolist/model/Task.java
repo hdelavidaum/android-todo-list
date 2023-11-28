@@ -4,10 +4,10 @@ import java.util.UUID;
 
 public class Task {
     private String name;
-    private UUID id;
-    private boolean isCompleted;
+    private int id;
+    private int isCompleted;
 
-    public Task(String name, UUID id, boolean isCompleted) {
+    public Task(String name, int id, int isCompleted) {
         this.name = name;
         this.id = id;
         this.isCompleted = isCompleted;
@@ -21,19 +21,19 @@ public class Task {
         this.name = name;
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public boolean isCompleted() {
+    public int isCompleted() {
         return isCompleted;
     }
 
-    public void setCompleted(boolean completed) {
+    public void setCompleted(int completed) {
         isCompleted = completed;
     }
 }
