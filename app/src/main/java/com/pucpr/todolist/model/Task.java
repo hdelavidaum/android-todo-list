@@ -4,12 +4,17 @@ import java.util.UUID;
 
 public class Task {
     private String name;
-    private int id;
+    private long id;
     private int isCompleted;
 
-    public Task(String name, int id, int isCompleted) {
+    public Task(String name, long id, int isCompleted) {
         this.name = name;
         this.id = id;
+        this.isCompleted = isCompleted;
+    }
+
+    public Task(String name, int isCompleted) {
+        this.name = name;
         this.isCompleted = isCompleted;
     }
 
@@ -21,11 +26,11 @@ public class Task {
         this.name = name;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -41,7 +41,7 @@ public class TaskActivity extends AppCompatActivity {
 
             taskViewTitle.setText(getString(R.string.edit_task_title));
             newTaskAddButton.setText(getString(R.string.btn_edit_Item));
-            newTaskEditText.setText(DataModel.getInstance().tasks.get(position).getName());
+            newTaskEditText.setText(DataModel.getInstance().getTask(position).getName());
         } else {
             newTaskEditText.setText("");
         }
@@ -52,8 +52,9 @@ public class TaskActivity extends AppCompatActivity {
         String task = newTaskEditText.getText().toString();
 
         if(task.length() > 0 && isToEditTask) {
-            Task oldTask = DataModel.getInstance().tasks.get(position);
-            oldTask.setName(task.toString());
+            Task taskToUpdate = DataModel.getInstance().getTask(position);
+            taskToUpdate.setName(task);
+            DataModel.getInstance().updateTask(taskToUpdate, position);
             finish();
         } else if (task.length() > 0) {
             Intent resultIntent = new Intent();

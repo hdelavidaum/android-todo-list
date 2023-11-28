@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerViewItemsList = findViewById(R.id.recyclerViewItemsList);
+        DataModel.getInstance().createDataBase(getApplicationContext());
+
         recyclerViewItemsList.setAdapter(taskAdapter);
         recyclerViewItemsList.setLayoutManager(
                 new LinearLayoutManager(MainActivity.this)
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         taskAdapter.setItemRemoveButtonOnClickListener(new TaskAdapter.ItemRemoveButtonOnClickListener() {
             @Override
             public boolean onRemoveItemClick(View view, int position) {
-                DataModel.getInstance().tasks.remove(position);
+                DataModel.getInstance().deleteTask(position);
                 taskAdapter.notifyItemRemoved(position);
 
                 return false;
@@ -77,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                         String newTaskName = data.getStringExtra("newTaskName");
                         Log.d("newTaskName", newTaskName);
 
-                        DataModel.getInstance().tasks.add(new Task(newTaskName, UUID.randomUUID().clockSequence(), 0));
+                        DataModel.getInstance().addTask(new Task(newTaskName, 0));
                     }
                 }
             }

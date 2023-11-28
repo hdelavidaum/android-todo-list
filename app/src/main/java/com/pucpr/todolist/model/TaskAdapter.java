@@ -18,6 +18,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder>{
     public interface OnItemClickListener { void onItemClick(View view, int position); }
     public interface ItemRemoveButtonOnClickListener { boolean onRemoveItemClick(View view, int position); }
 
+
     private static OnItemClickListener clickListener;
     private static ItemRemoveButtonOnClickListener itemRemoveButtonOnClickListener;
 
@@ -76,13 +77,13 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Task t = DataModel.getInstance().tasks.get(position);
+        Task t = DataModel.getInstance().getTask(position);
         holder.textViewItem.setText(t.getName());
         holder.checkBoxItem.setChecked(t.isCompleted() > 0);
     }
 
     @Override
     public int getItemCount() {
-        return DataModel.getInstance().tasks.size();
+        return DataModel.getInstance().getTaskListSize();
     }
 }

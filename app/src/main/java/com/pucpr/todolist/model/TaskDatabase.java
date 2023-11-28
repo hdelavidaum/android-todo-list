@@ -25,9 +25,9 @@ public class TaskDatabase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE IF NOT EXISTS " + DB_TABLE + " ("+
-                COL_ID + "integer primary key autoincrement, " +
-                COL_NAME + "text, " +
-                COL_IS_COMPLETED + "integer" +
+                COL_ID + " integer primary key autoincrement, " +
+                COL_NAME + " text, " +
+                COL_IS_COMPLETED + " integer" +
                 ")";
         db.execSQL(query);
     }
@@ -52,18 +52,20 @@ public class TaskDatabase extends SQLiteOpenHelper {
         ArrayList<Task> tasks = new ArrayList<>();
         if (cursor.moveToFirst()){
             do{
-              int id = cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID));
+              long id = cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID));
               String name = cursor.getString(cursor.getColumnIndexOrThrow(COL_NAME));
               int isCompleted = cursor.getInt(cursor.getColumnIndexOrThrow(COL_IS_COMPLETED));
 
               tasks.add(new Task(name, id, isCompleted));
             } while (cursor.moveToNext());
         }
+
+        cursor.close();
         database.close();
         return tasks;
     }
 
-    public long updateTaskInDB(@NonNull Task task){
+    public int updateTaskInDB(@NonNull Task task){
         ContentValues values = new ContentValues();
         values.put(COL_NAME, task.getName());
         values.put(COL_IS_COMPLETED, task.isCompleted());
@@ -74,10 +76,10 @@ public class TaskDatabase extends SQLiteOpenHelper {
         return count;
     }
 
-    public long removeTaskInDB(@NonNull Task task){
+    public int removeTaskInDB(@NonNull Task task){
         String id = String.valueOf(task.getId());
         SQLiteDatabase database = getWritableDatabase();
-        long count = database.delete(DB_TABLE, COL_ID + "=?", new String[]{id});
+        int count = database.delete(DB_TABLE, COL_ID + "=?", new String[]{id});
         database.close();
         return count;
     }
